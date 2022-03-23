@@ -1,9 +1,7 @@
 <div class="container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>
-        Cadastre-se!
-      </mat-card-title>
+      <mat-card-title>Template-Driven</mat-card-title>
     </mat-card-header>  
     <mat-card-content>
       <form action="#" id="main-form" (ngSubmit)="submit()"
@@ -83,7 +81,7 @@
           name="phonenumber"
           autocomplete="false"
           required
-          minlength="8"
+          minlength="3"
           #inputPhoneNumber="ngModel"
           >
           <mat-error>
@@ -91,7 +89,7 @@
               Este campo é obrigatorio
             </span>
             <span *ngIf="inputPhoneNumber.errors?.['minlength']">
-              Você não colocou a quantidade de numeros mínimos (minimo, 11)
+              Você não colocou a quantidade de numeros mínimos (minimo, 3)
             </span>     
           </mat-error>
         </mat-form-field>
@@ -105,7 +103,7 @@
           name="adress"
           autocomplete="false"
           required
-          minlength="8"
+          minlength="6"
           #inputAdress="ngModel"
           >
           <mat-error>
@@ -113,7 +111,7 @@
               Este campo é obrigatorio
             </span>
             <span *ngIf="inputAdress.errors?.['minlength']">
-              Você não colocou a quantidade de numeros mínimos (minimo, 8)
+              Você não colocou a quantidade de numeros mínimos (minimo, 6)
             </span>     
           </mat-error>
         </mat-form-field>
@@ -134,7 +132,7 @@
       <div class="col">
         <mat-form-field appearance="fill" class="grow" >
           <mat-label>Senha</mat-label>
-          <input type="text" matInput placeholder="Digite a sua senha"
+          <input type="password" matInput placeholder="Digite a sua senha"
           [(ngModel)]="password"
           name="password"
           autocomplete="false"
@@ -147,8 +145,8 @@
               Este campo é obrigatorio
             </span>
             <span *ngIf="inputPassword.errors?.['minlength']">
-              Você não colocou a quantidade de numeros mínimos (minimo, 8)
-            </span>     
+              Você não colocou a quantidade de numeros mínimos (minimo, 6)
+            </span>               
           </mat-error>
         </mat-form-field>
       </div>
@@ -156,7 +154,7 @@
       <div class="col">
         <mat-form-field appearance="fill" class="grow" >
           <mat-label>Confirmar senha</mat-label>
-          <input type="text" matInput placeholder="Confirme a sua senha"
+          <input type="password" matInput placeholder="Digite a mesma senha"
           [(ngModel)]="confirmPassword"
           name="confirmPassword"
           autocomplete="false"
@@ -169,8 +167,9 @@
               Este campo é obrigatorio
             </span>
             <span *ngIf="inputConfirmPassword.errors?.['minlength']">
-              Você não colocou a quantidade de numeros mínimos (minimo, 8)
+              Você não colocou a quantidade de numeros mínimos (minimo, 6)
             </span>     
+
           </mat-error>
         </mat-form-field>
       </div>
@@ -178,8 +177,9 @@
       <div class="col">
         <button mat-raised-button type="submit" color="accent"
         class="grow"
-        [disabled]="form.invalid"
-        (click)="showDialog()"
+        [disabled]="form.invalid
+        || mustMatch(inputPassword.value, inputConfirmPassword.value)"
+        (click)="showDialog()" 
         >Cadastrar</button>
       </div>
     </form>

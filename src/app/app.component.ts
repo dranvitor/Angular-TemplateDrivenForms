@@ -46,5 +46,9 @@ export class AppComponent {
     ref.componentInstance.password = this.password
     ref.componentInstance.confirmPassword = this.confirmPassword
    }
+
+ mustMatch(pass: any, cpass: any): boolean{
+  return !( pass == cpass)
+}
  
 }
